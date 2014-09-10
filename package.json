@@ -1,0 +1,29 @@
+{
+  "name": "video-beatbox",
+  "version": "0.1.0",
+  "description": "A video beatbox using webrtc frames",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thethp/video-beatbox.git"
+  },
+  "keywords": [
+    "video",
+    "webrtc",
+    "beatbox"
+  ],
+  "author": "Todd H. Page",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thethp/video-beatbox/issues"
+  },
+  "homepage": "https://github.com/thethp/video-beatbox",
+  "dependencies": {
+    "express": "^4.9.0",
+    "jade": "^1.6.0",
+    "recordrtc": "^4.0.4"
+  }
+}

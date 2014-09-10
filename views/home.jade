@@ -1,0 +1,14 @@
+mixin videoElement
+  .videoFrame
+    video(autoplay muted)
+
+doctype
+html
+  head
+    title WebBeats
+    link(rel='stylesheet', href='/styles/style.css')
+    script(src='/scripts/lib/RecordRTC.js')
+  body
+    .holder
+      - for(var x=0;x<9;x++)
+        +videoElement
