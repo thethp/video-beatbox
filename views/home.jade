@@ -9,7 +9,8 @@ html
     title WebBeats
     link(rel='stylesheet', href='/styles/style.css')
     script(src='/scripts/lib/RecordRTC.js')
-    script(src='/scripts/script.js')
+    script(src='/scripts/app/WebRTC.js')
+    script(src='/scripts/app/script.js')
   body
     .holder
       - for(var x=0;x<9;x++)
@@ -18,3 +19,4 @@ html
       h1 Toggle Audio:
         #toggle.on
       span This is so beta it hurts.
+      span <br><br>Click a box to record, click it again to stop recording
