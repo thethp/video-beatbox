@@ -1,9 +1,5 @@
 var stream = undefined;
 var isRecording = false;
-navigator.getUserMedia  = navigator.getUserMedia || 
-                          navigator.webkitGetUserMedia || 
-                          navigator.mozGetUserMedia || 
-                          navigator.msGetUserMedia;
 
 function WebRTC(_options) {
   this.options = _options;
@@ -38,7 +34,6 @@ WebRTC.prototype.onElClick = function(_ev,index) {
       elA.src = _url;
     });
     el.addEventListener('loadeddata', function() {
-      elA.play();
       setInterval(this.onInterval(_elV,_elA),elV.duration*1000);
     });
   }
