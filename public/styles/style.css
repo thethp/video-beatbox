@@ -12,6 +12,16 @@ html, body {
   min-width: 300px;
   height: 0;
   padding-bottom: 90%;
+  display: table-cell;
+  vertical-align: top;
+}
+.col {
+  display: table-cell;
+  vertical-align: top;
+  padding: 0 24px;
+}
+h1 { 
+  margin: 0px;
 }
 .videoFrame {
   background-color: #900;
@@ -37,4 +47,45 @@ video {
   -moz-filter: opacity(.7);
   -webkit-filter: opacity(.7);
   filter: opacity(.7); 
+}
+#toggle {
+  display: inline-block;
+  border-radius: 10%;
+  border: 5px solid #021A1F;
+  border-left: 20px solid #021A1F;
+  border-right: 20px solid #021A1F;
+  background: -webkit-linear-gradient(left, #5B8C80  50%,#DE7268 50%);
+  width: 150px;
+  height: 50px;
+  position: relative;
+}
+#toggle::before {
+  position: absolute;
+  content: "";
+  background: #E3AA4F;
+  cursor: pointer;
+  border-radius: 10%;
+  height: 40px;
+  width: 70px;
+  top: 0;
+  left: -8px;
+}
+#toggle.on::before {
+  left: auto;
+  right: -8px;
+}
+#toggle::after {
+  position: absolute;
+  content: "";
+  border-radius: 15%;
+  height: 35px;
+  width: 8px;
+  top: 2px;
+  left: 23px;
+  background-color: #FFF;
+  box-shadow: 2px 2px 1px #CB9846;
+}
+#toggle.on::after {
+  left: auto;
+  right: 23px;
 }

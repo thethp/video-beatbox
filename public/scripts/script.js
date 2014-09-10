@@ -2,6 +2,7 @@ var stream = undefined;
 var isRecording = false;
 var recordRTC = undefined;
 var recordATC = undefined;
+var muted = false;
 
 navigator.getUserMedia  = navigator.getUserMedia ||
                           navigator.webkitGetUserMedia ||
@@ -46,11 +47,14 @@ WebRTC.prototype.onElClick = function(_ev,index) {
     });
     recordATC.stopRecording(function(_url) {
       elA.src = _url;
-      elA.muted = false;
     });
     el.addEventListener('loadeddata', function() {
       elA.play();
       setInterval(function() {
+        if(navigator.userAgent.search("Firefox")) {
+          elA.play();
+          el.play();
+        }
         elA.currentTime = 0;
         el.currentTime = 0;
       },el.duration*1000);
@@ -63,3 +67,14 @@ new WebRTC({
   video: true,
   audio: true
 });
+
+//EVENT LISTENERS
+window.onload = function() {
+  document.getElementById('toggle').addEventListener('click', function() {
+    muted = !muted;
+    for(var els = document.getElementsByTagName('audio'),i=0;i<els.length;i++) {
+      els[i].muted = muted;
+    }
+    document.getElementById('toggle').classList.toggle('on');      
+  });
+}
