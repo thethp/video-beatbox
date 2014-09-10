@@ -1,6 +1,8 @@
 var stream = undefined;
 var isRecording = false;
 var recordRTC = undefined;
+var options = undefined;
+
 navigator.getUserMedia  = navigator.getUserMedia ||
                           navigator.webkitGetUserMedia ||
                           navigator.mozGetUserMedia ||
@@ -13,9 +15,9 @@ function bindConnection(_fn,_me) {
 }
 
 function WebRTC(_options) {
-  this.options = _options;
+  options = _options;
   this.onConnection = bindConnection(this.onConnection, this);
-  navigator.getUserMedia(this.options, this.onConnection, this.onError);
+  navigator.getUserMedia(options, this.onConnection, this.onError);
 }
 
 WebRTC.prototype.onConnection = function(_stream) {
@@ -31,15 +33,18 @@ WebRTC.prototype.onError = function(_error) {
 }
 
 WebRTC.prototype.onElClick = function(_ev) {
+  console.log(options);
   if (!isRecording && stream != undefined) {
-    recordRTC = RecordRTC(stream);
+    recordRTC = RecordRTC(stream, options);
     recordRTC.startRecording();
   } else if (isRecording) {
     recordRTC.stopRecording(function(_url){
-      _ev.target.src = _url;
-      _ev.target.removeAttribute('muted');
-      _ev.target.muted = false;
-      _ev.target.play();
+      var el = _ev.target;
+      el.src = _url;
+      el.muted = false;
+      el.loop = true;      
+      el.setAttribute('loop',true);
+      el.play();
     });
   }
   isRecording = !isRecording;
@@ -47,5 +52,6 @@ WebRTC.prototype.onElClick = function(_ev) {
 
 new WebRTC({
   video: true,
-  audio: true
+  audio: true,
+  type: 'video'
 });
