@@ -5,15 +5,14 @@ navigator.getUserMedia  = navigator.getUserMedia ||
                           navigator.msGetUserMedia;
 
 window.onload = function() {
-  console.log(navigator.getUserMedia);
-  if(navigator.getUserMedia == undefined) {
-    alert("Your browser doesn't support WebRTC, this site won't work for you");
-  } else {
+  if(navigator.getUserMedia !== undefined) {
+    //Startup WebRTC and RecordRTC
     new WebRTC({
       video: true,
       audio: true
     });
-
+    
+    //EVENT LISTENERS
     document.getElementById('toggle').addEventListener('click', muteAudio);
   }
 }

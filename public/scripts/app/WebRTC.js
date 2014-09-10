@@ -3,7 +3,11 @@ var isRecording = false;
 
 function WebRTC(_options) {
   this.options = _options;
-  navigator.getUserMedia(this.options, this.onConnection, this.onError);
+  if(navigator.getUserMedia !== undefined) {
+    navigator.getUserMedia(this.options, this.onConnection, this.onError);
+  } else {
+    alert("Your browser doesn't support WebRTC, this site won't work for you");
+  }
 }
 
 WebRTC.prototype.onConnection = function(_stream) {
@@ -49,5 +53,3 @@ WebRTC.prototype.onInterval = function(_elV,_elA) {
     _elV.currentTime = 0;
   }
 }
-
-module.exports = WebRTC;
