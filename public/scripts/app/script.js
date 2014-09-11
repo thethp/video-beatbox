@@ -45,9 +45,7 @@ onBeat = function(_ev) {
   } else {
       document.getElementById('pulse').style.background ='#900';
   }
-
-  document.getElementById('pulse').style.display = 'block';
-  setTimeout(function(){document.getElementById('pulse').style.display = 'none';},beat/4);
+  setTimeout(function(){document.getElementById('pulse').style.background = '#FFF';},beat/4);
  
   beatCounter++;
 }

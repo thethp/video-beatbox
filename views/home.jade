@@ -18,11 +18,16 @@ html
     .col
       h1 Toggle Audio:
         #toggle.on
-      span This is so beta it hurts.
-      span <br><br>Click a box to record, click it again to stop recording
+      .headphones Headphones:
+        input(type='checkbox',name='headphones')
       .bpm BPM:
         input(type='text',name='bpm',value='88')
       .numBeats Number of Beats:
         input(type='text',name='numBeats',value='4')
       .pulseHolder
         #pulse
+      span This is so beta it hurts.
+      ul.instructions 
+        li Click a box to record a loop.  It will stop recording at the number of beats specified
+        li Layer your loops to make a song. 
+        li Mute all loops with the toggle above, or individual loops with their control.

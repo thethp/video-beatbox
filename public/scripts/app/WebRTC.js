@@ -1,5 +1,6 @@
 var stream = undefined;
-var isRecording = false;
+var recordVideo;
+var recordAudio;
 
 function WebRTC(_options) {
   this.options = _options;
@@ -25,18 +26,30 @@ WebRTC.prototype.onError = function(_error) {
 handleRecording = function(_ev,index) {
   var elV = _ev.target;
   var elA = _ev.target.getElementsByTagName('audio')[0];
-  if (!isRecording && stream != undefined) {
+  if (stream != undefined) {
+    if(!document.getElementsByName('headphones')[0].checked) muteAudio();
     recordVideo = RecordRTC(stream, {type: 'video'});
     recordAudio = RecordRTC(stream);
     recordVideo.startRecording();
     recordAudio.startRecording();
-  } else if (isRecording) {
-    recordVideo.stopRecording(function(_url){
-      elV.src = _url;
-    });
-    recordAudio.stopRecording(function(_url) {
-      elA.src = _url;
-    });
+    console.log(parseInt(document.getElementsByName('numBeats')[0].value)*beat);
+    setTimeout(function() {
+      recordVideo.stopRecording(function(_url){
+        elV.src = _url;
+      });
+      recordAudio.stopRecording(function(_url) {
+        elA.src = _url;
+      });
+      if(!document.getElementsByName('headphones')[0].checked) muteAudio();
+    },parseInt(document.getElementsByName('numBeats')[0].value)*beat);
   }
-  isRecording = !isRecording;
+}
+
+stopRecording = function(_elV,_elA) {
+  recordVideo.stopRecording(function(_url){
+    elV.src = _url;
+  });
+  recordAudio.stopRecording(function(_url) {
+    elA.src = _url;
+  });
 }
