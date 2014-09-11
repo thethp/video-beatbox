@@ -105,3 +105,8 @@ ul {
   font-size: 14px;
   font-family: sans-serif;
 }
+.bottom {
+  font-size: 12px;
+  position: absolute;
+  top: 39%;
+}
