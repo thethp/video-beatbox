@@ -1,7 +1,8 @@
-mixin videoElement
+mixin videoElement(n)
   .videoFrame
     video(muted autoplay)
       audio
+    .muteButton(num=n name="muter")
 
 doctype
 html
@@ -14,7 +15,7 @@ html
   body
     .holder
       - for(var x=0;x<9;x++)
-        +videoElement
+        +videoElement(x)
     .col
       h1 Toggle Audio:
         #toggle.on
@@ -26,12 +27,14 @@ html
         input(type='text',name='numBeats',value='4')
       .pulseHolder
         #pulse
-      span This is so beta it hurts.
+      span This is so beta it hurts. <br>
+      strong CURRENTLY ONLY WORKS IN CHROME
       ul.instructions 
         li Click a box to record a loop.  It will stop recording at the number of beats specified
         li Layer your loops to make a song. 
-        li Mute all loops with the toggle above, or individual loops with their control.
+        li Mute all loops with the toggle above, or individual loops with their control, which will appear after it is recorded
       .bottom
         div *Planned features: the ability to share your loops, ability to make loops with other hoomans, 
         div *Made by <a href="http://thpcod.es">thpcod.es</a>
+        div *Report an <a href="">issue</a>
         div *Submit a <a href="https://github.com/thethp/video-beatbox">Pull Request</a>

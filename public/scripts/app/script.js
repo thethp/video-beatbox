@@ -27,6 +27,9 @@ window.onload = function() {
     document.getElementById('toggle').addEventListener('click', muteAudio);
     document.getElementsByName('bpm')[0].addEventListener('change', updateInterval);
     document.getElementsByName('numBeats')[0].addEventListener('change', updateInterval);
+    for(var els = document.getElementsByName('muter'),i=0;i<els.length;i++) {
+      els[i].addEventListener('click', muteOneAudio);
+    }
   }
 }
 
@@ -36,6 +39,12 @@ muteAudio = function(_ev) {
     els[i].muted = muted;
   }
   document.getElementById('toggle').classList.toggle('on');
+}
+
+muteOneAudio = function(_ev) {
+  var num = _ev.target.getAttribute('num');
+  document.getElementsByTagName('audio')[num].muted = !document.getElementsByTagName('audio')[num].muted;
+  _ev.target.classList.toggle('paused');
 }
 
 onBeat = function(_ev) {

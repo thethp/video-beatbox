@@ -36,6 +36,7 @@ handleRecording = function(_ev,index) {
     setTimeout(function() {
       recordVideo.stopRecording(function(_url){
         elV.src = _url;
+	elV.parentElement.setAttribute('hasContent',true);
       });
       recordAudio.stopRecording(function(_url) {
         elA.src = _url;
